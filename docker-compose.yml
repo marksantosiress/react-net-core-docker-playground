@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  frontend:
+    build: ./bookings-list-frontend
+    container_name: frontend
+    ports:
+      - "30010:3000"
+    networks:
+      - my-network
+
+  bff-service:
+    build: ./bookings-list-bff
+    container_name: bff-service
+    ports:
+      - "5000:80"
+    networks:
+      - my-network
+
+  bookingapi-service:
+    build: ./bookings-list-api
+    container_name: bookingapi-service
+    ports:
+      - "5001:80"
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
